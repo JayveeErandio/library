@@ -9,7 +9,7 @@ namespace Controllers;
 public class MembersController(Context db) : ControllerBase {
     [HttpGet]
     public async Task<IActionResult> GetMembers() {
-        var members = await db.Members.ToListAsync();
+        var members = await db.Members.Select(i => new {i.id, i.name, i.email}).ToListAsync();
         return Ok(members);
     }
 

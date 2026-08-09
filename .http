@@ -26,8 +26,20 @@ POST http://localhost:5100/books
 Content-Type: application/json
 
 {
-    "title": "Unfunny Jokes",
-    "author": "Michael V"
+    "title": "Mathematics Grade 6",
+    "author": "Avilon Inc."
 }
 
+###
+GET http://localhost:5100/books/available
+
 ##############################################
+
+###
+POST http://localhost:5100/members/5/borrow/4
+
+###
+GET http://localhost:5100/members/5/borrowings
+
+###
+PATCH http://localhost:5100/members/1/return/4
