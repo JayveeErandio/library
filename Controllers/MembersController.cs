@@ -14,13 +14,15 @@ public class MembersController(Context db) : ControllerBase {
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetAccount(int id) {
+    public async Task<IActionResult> GetMember(int id) {
         var found = await db.Members.FindAsync(id);
         return found != null ? Ok(found) : NotFound();
     }
 
     [HttpPost]
-    public async Task<IActionResult> PostAccount(ParamMember request) {
+    public async Task<IActionResult> PostMember(ParamMember request) {
+        if(await db.Members.AnyAsync(i => i.email == request.Email)) return Conflict("Email is already used by other member");
+        
         var member = new Member {
             name = request.Name,
             email = request.Email,

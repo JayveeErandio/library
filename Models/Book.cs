@@ -1,5 +1,7 @@
+using System.ComponentModel.DataAnnotations.Schema;
 namespace Models;
 
+[Table("books")]
 public class Book
 {
     public int id { get; set; }

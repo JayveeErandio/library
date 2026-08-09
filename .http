@@ -9,6 +9,21 @@ POST http://localhost:5100/members
 Content-Type: application/json
 
 {
-    "name": "Jayvee",
-    "email": "jayvee@gmail.com"
+    "name": "Dave",
+    "email": "dave@gmail.com"
+}
+
+
+##############################################
+
+###
+GET http://localhost:5100/books
+
+###
+POST http://localhost:5100/books
+Content-Type: application/json
+
+{
+    "title": "Unfunny Jokes",
+    "author": "Michael V"
 }
