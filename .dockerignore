@@ -1,0 +1,12 @@
+bin/
+obj/
+publish/
+
+.git/
+.gitignore
+
+.vscode/
+.vs/
+
+README.md
+*.log
