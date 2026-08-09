@@ -13,11 +13,13 @@ Content-Type: application/json
     "email": "dave@gmail.com"
 }
 
-
 ##############################################
 
 ###
 GET http://localhost:5100/books
+
+###
+GET http://localhost:5100/books/2
 
 ###
 POST http://localhost:5100/books
@@ -27,3 +29,5 @@ Content-Type: application/json
     "title": "Unfunny Jokes",
     "author": "Michael V"
 }
+
+##############################################

@@ -12,7 +12,7 @@ public class BooksController(Context db) : ControllerBase {
         return Ok(await db.Books.ToListAsync());
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public async Task<IActionResult> GetBook(int id) {
         var found = await db.Books.FindAsync(id);
         return found != null ? Ok(found) : NotFound();
@@ -33,6 +33,11 @@ public class BooksController(Context db) : ControllerBase {
         await db.SaveChangesAsync();
 
         return Created("/books/" + book.id, book);
+    }
+
+    [HttpGet("available")]
+    public async Task<IActionResult> AvailableBook() {
+        return Ok(await db.Books.Where(i => !db.Borrowings.Any(j => j.BookId == i.id && j.ReturnedAt == null)).ToListAsync());
     }
 }
 
