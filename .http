@@ -1,0 +1,14 @@
+###
+GET http://localhost:5100/members
+
+###
+GET http://localhost:5100/members/1
+
+###
+POST http://localhost:5100/members
+Content-Type: application/json
+
+{
+    "name": "Jayvee",
+    "email": "jayvee@gmail.com"
+}
