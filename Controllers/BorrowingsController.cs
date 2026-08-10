@@ -1,30 +1,22 @@
 using Data;
 using Models;
+using Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 namespace Controllers;
 
 [ApiController]
-public class BorrowingsController(Context db) : ControllerBase {
+public class BorrowingsController(Context db, BorrowingService service) : ControllerBase {
     [HttpPost("/members/{member_id}/borrow/{book_id}")]
     public async Task<IActionResult> BorrowBook(int member_id, int book_id){
-        if (!await db.Members.AnyAsync(i => i.id == member_id)) return NotFound("No Member found");
-        if (!await db.Books.AnyAsync(i => i.id == book_id)) return NotFound("No Book Found");
-
-        if(await db.Borrowings.AnyAsync(i => i.BookId == book_id && i.ReturnedAt == null))
-            return Conflict("The book is currently borrowed");
-
-        var borrowing = new Borrowing {
-            MemberId = member_id,
-            BookId = book_id,
-            BorrowedAt = DateTime.UtcNow
+        var value = await service.BorrowBookAsync(member_id, book_id);
+        return value.Status switch {
+            BorrowingService.Status.NoMember => NotFound("No Member Found"),
+            BorrowingService.Status.NoBook => NotFound("No Book found"),
+            BorrowingService.Status.OtherBorrow =>  Conflict("The book is currently borrowed"),
+            BorrowingService.Status.Success => Created("/members/" + member_id + "/borrowings", value.Borrowing),
+            _ => Conflict("Unknown resolve")
         };
-
-        db.Borrowings.Add(borrowing);
-
-        await db.SaveChangesAsync();
-
-        return Created("/members/" + member_id + "/borrowings", borrowing);
     }
 
     [HttpGet("/members/{member_id}/borrowings")]
@@ -59,7 +51,7 @@ public class BorrowingsController(Context db) : ControllerBase {
 
         return Ok("The book is successfully returned.");
     }
-
+    
     public static object ConvertDateTime(DateTime basis) {
         TimeZoneInfo timezone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Manila");
 

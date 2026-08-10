@@ -9,8 +9,8 @@ POST http://localhost:5100/members
 Content-Type: application/json
 
 {
-    "name": "Dave",
-    "email": "dave@gmail.com"
+    "name": "Anthony",
+    "email": "hehe@sadsad"
 }
 
 ##############################################
@@ -26,8 +26,8 @@ POST http://localhost:5100/books
 Content-Type: application/json
 
 {
-    "title": "Mathematics Grade 6",
-    "author": "Avilon Inc."
+    "title": "How to cook eggs",
+    "author": "Jayvee Erandio"
 }
 
 ###

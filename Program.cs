@@ -1,5 +1,6 @@
-using Data;
 using Microsoft.EntityFrameworkCore;
+using Data;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<Context>(options => {
@@ -7,6 +8,7 @@ builder.Services.AddDbContext<Context>(options => {
         builder.Configuration.GetConnectionString("Supabase")
     );
 });
+builder.Services.AddScoped<BorrowingService>();
 builder.Services.AddControllers();
 builder.Services.AddCors(options =>
 {
