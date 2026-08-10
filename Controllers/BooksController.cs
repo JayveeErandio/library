@@ -1,5 +1,7 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using Data;
 using Models;
 namespace Controllers;
@@ -42,6 +44,9 @@ public class BooksController(Context db) : ControllerBase {
 }
 
 public record ParamBook (
+    [Required]
     string Title,
+
+    [Required]
     string Author
 );

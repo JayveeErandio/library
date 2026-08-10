@@ -1,7 +1,9 @@
-using Data;
-using Models;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
+using Data;
+using Models;
 namespace Controllers;
 
 [ApiController]
@@ -34,6 +36,15 @@ public class MembersController(Context db) : ControllerBase {
 }
 
 public record ParamMember (
-        string Name,
-        string Email
+    [Required]
+    [MinLength(2)]
+    [RegularExpression(
+        @"^[a-zA-Z ]+$",
+        ErrorMessage = "Name must contain letters and spaces only."
+    )]
+    string Name,
+
+    [Required]
+    [EmailAddress]
+    string Email
 );
