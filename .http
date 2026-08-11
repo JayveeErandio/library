@@ -36,7 +36,7 @@ GET http://localhost:5100/books/available
 ##############################################
 
 ###
-POST http://localhost:5100/members/5/borrow/4
+POST http://localhost:5100/members/4/borrow/9
 
 ###
 GET http://localhost:5100/members/5/borrowings
