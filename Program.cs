@@ -64,7 +64,7 @@ app.MapGet("/version", () => new
 {
     version = "3.0",
     deployedBy = "GitHub Actions",
-    issue = "Kapikon lang ang naka naka"
+    issue = BWISETTT TANGINAA"
 });
 
 app.UseCors("Frontend");
