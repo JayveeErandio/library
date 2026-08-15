@@ -36,6 +36,11 @@ jobs:
           cd publish
           zip -r ../deployment.zip .
 
+      - name: Inspect GitHub OIDC claims
+        uses: github/actions-oidc-debugger@main
+        with:
+          audience: sts.amazonaws.com
+
       - name: Authenticate to AWS
         uses: aws-actions/configure-aws-credentials@v4
         with:
