@@ -1,5 +1,5 @@
 ###
-GET http://localhost:5100/members
+GET http://localhost:5100
 
 ###
 GET http://localhost:5100/members/1
@@ -43,3 +43,13 @@ GET http://localhost:5100/members/5/borrowings
 
 ###
 PATCH http://localhost:5100/members/1/return/4
+
+
+###
+GET http://library-env.eba-xkb76cmp.us-east-1.elasticbeanstalk.com/members
+Content-Type: application/json
+
+{
+    "name": "Chelsea",
+    "email": "chelsea@gmail.com"
+}

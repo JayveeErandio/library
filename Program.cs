@@ -22,7 +22,43 @@ builder.Services.AddCors(options =>
 });
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => """
+GET http://localhost:5100/
+
+GET http://localhost:5100/members/1
+
+POST http://localhost:5100/members
+Content-Type: application/json
+
+{
+    "name": "Anthony",
+    "email": "hehe@sadsad"
+}
+
+##############################################
+
+GET http://localhost:5100/books
+
+GET http://localhost:5100/books/2
+
+POST http://localhost:5100/books
+Content-Type: application/json
+{
+    "title": "How to cook eggs",
+    "author": "Jayvee Erandio"
+}
+
+GET http://localhost:5100/books/available
+
+##############################################
+
+POST http://localhost:5100/members/4/borrow/9
+
+GET http://localhost:5100/members/5/borrowings
+
+PATCH http://localhost:5100/members/1/return/4
+
+""");
 
 app.UseCors("Frontend");
 app.MapControllers();
