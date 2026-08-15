@@ -60,6 +60,12 @@ PATCH http://localhost:5100/members/1/return/4
 
 """);
 
+app.MapGet("/version", () => new
+{
+    version = "3.0",
+    deployedBy = "GitHub Actions"
+});
+
 app.UseCors("Frontend");
 app.MapControllers();
 app.Run();
