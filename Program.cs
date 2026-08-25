@@ -24,7 +24,7 @@ var app = builder.Build();
 
 app.MapGet("/", () => """
 Hello Guys! This is Jevi Randio
-Representing PHILIPPINES!
+Representing PHILIPPINES. Mabuhay!
 
 GET http://localhost:5100/
 
