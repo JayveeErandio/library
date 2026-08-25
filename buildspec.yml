@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      dotnet: 10.0
+
+  pre_build:
+    commands:
+      - echo Restoring dependencies...
+      - dotnet restore
+
+  build:
+    commands:
+      - echo Publishing ASP.NET Core application...
+      - dotnet publish -c Release -o ./publish
+
+artifacts:
+  files:
+    - "**/*"
+  base-directory: publish
