@@ -23,6 +23,9 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 app.MapGet("/", () => """
+Hello Guys! This is Jevi Randio
+Representing PHILIPPINES!
+
 GET http://localhost:5100/
 
 GET http://localhost:5100/members/1
